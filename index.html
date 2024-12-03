@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Balance</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />   
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio id="somdefundo" src="audios/somdefundo.mp3" loop></audio>
+    <audio id="malacaindo" src="audios/malacaindo.mp3"></audio>
+    <audio id="cereja" src="audios/cereja.mp3"></audio>
+    <audio id="bolo" src="audios/bolodimurango.mp3"></audio>
+    <audio id="tijolo" src="audios/tijolo.mp3"></audio>
+    <audio id="win" src="audios/win.mp3"></audio>
+    <audio id="perdeu" src="audios/perder.mp3"></audio>
+    <audio id="passarfase" src="audios/paasardefase.mp3"></audio>
+    <audio id="click" src="audios/click.mp3"></audio>
+
+    <div class='container'>
+        <!-- tela de início -->
+        <div id="start-screen" class="screen active">
+            <img id="title" src="imagens/titles/title.png">
+            <div class="inicial-button-container">
+                <button id="start-button" class="inicial-button">Iniciar Jogo<span id='play_arrow' class="material-symbols-outlined">play_arrow</span></button>
+                <button id='manual' class="inicial-button">Manual de Instruções<span id='menu_book' class="material-symbols-outlined">menu_book</span></button>
+                <button id="config" class="inicial-button">Configurações<span class="material-symbols-outlined">settings</span></button>
+            </div>
+        </div>
+
+        <!-- tela do jogo -->
+        <div id="game-screen" class="screen">
+            <button id="pause-button">Pausar<span class="material-symbols-outlined">pause</span></button>
+            <button id="back-button-game" class="back-button">Voltar</button>
+            <h1>Gorjeta: <span id='scores'>0</span></h1>
+            <div id='lose'>
+                <h1>Você perdeu</h1>
+                <button id='restart'>Jogar novamente</button>
+            </div>
+            <div id="level-up-message">
+                <h1>Agora você trabalha numa confeitaria e o confeiteiro chefe precisa da sua ajuda para montar um bolo.
+                <br>Quanto mais camadas você equilibrar, mais dinheiro ganhará.</h1>
+            </div>
+            <div id="winner">
+                <h1>Parabéns, você ganhou!</h1>
+                <button id="winner_button">Voltar</button>
+            </div>
+            <div class='gameplay' id='gameplay'>
+                <div class='wrapper'>
+                    <div class='block' id='last'></div>
+                    <div class='block' id='play'></div>
+                </div>
+                <div class="line"></div>
+            </div>
+        </div>    
+
+        <!-- tela do manual -->
+        <div id="manual-screen" class="screen">
+            <img id="manual-title" src="imagens/titles/manual_title.png">
+            <div id="explica-manual">
+                <p>Bem-vindo ao Balance! </p>
+                <p>
+                    Neste jogo, você irá viver a vida de Robson, um ajudante que trabalha em todos os empregos que consegue. Para ajudá-lo, 
+                    você deve empilhar o máximo de objetos possível em cima dele, em cada um de seus empregos. Os objetos percorrem de um lado para outro na parte superior da tela,
+                    para fazer o objeto cair, a tecla de espaço deve ser clicada. Para pausar e continuar, basta apertar o botão de 'Shift'. 
+                    O jogo pode ser iniciado pelo mouse ou com a tecla "Enter". Para ganhar, você deve empilhar o máximo de camadas possível!
+                </p>
+                <p>O jogo é dividido em 3 fases:</p>
+                <ul>
+                    <li><strong>Primeiro nível:</strong> Até 10 pontos, com o tema de malas no aeroporto.</li>
+                    <li><strong>Segundo nível:</strong> Entre 10 e 30 pontos, o tema muda para uma confeitaria.</li>
+                    <li><strong>Terceiro nível:</strong> A partir de 30 pontos, o tema muda para uma construção.</li>
+                </ul>
+                <p>A partida termina em 50 pontos, podendo assim recomeçar.</p>
+            </div>
+            <button id="back-button-manual" class="back-button">Voltar</button>
+        </div>
+
+        <!-- tela de configurações -->
+        <div id="config-screen" class="screen" style="display: none;">
+            <img id="config-title" src="imagens/titles/config_title.png">
+            <div class="config-options">
+                <button id="skins" class="config-button">Skins<span class="material-symbols-outlined">person</span></button>
+                <div class="linha">
+                    <button id="difficulty" class="config-button">Dificuldade<span class="material-symbols-outlined">settings</span></button>
+                    <button id="creditos" class="config-button">Créditos <span class="material-symbols-outlined">computer</span></button>
+                </div>
+                <button id="volume" class="config-button">Volume<span class="material-symbols-outlined">volume_up</span></button>
+                <button id="back-button-config" class="back-button">Voltar</button>
+            </div>
+        </div>
+
+        <!-- tela de skins -->
+        <div id="skin-screen" class="screen" style="display: none;">
+            <img id="skins-title" src="imagens/titles/skins_title.png">
+            <div class="skin-container">
+                <div class="skin-block">
+                    <h3>Original</h3>
+                    <img src="imagens/pessoas/pessoa1.png" alt="Skin 1" class="skin-image">
+                    <button class="choose-skin-button" data-skin="imagens/pessoas/pessoa1.png">Escolher</button>
+                </div>
+                <div class="skin-block">
+                    <h3>Bailarina</h3>
+                    <img src="imagens/pessoas/pessoa2.png" alt="Skin 2" class="skin-image">
+                    <button class="choose-skin-button" data-skin="imagens/pessoas/pessoa2.png">Escolher</button>
+                </div>
+                <div class="skin-block">
+                    <h3>Mafioso</h3>
+                    <img src="imagens/pessoas/pessoa3.png" alt="Skin 3" class="skin-image">
+                    <button class="choose-skin-button" data-skin="imagens/pessoas/pessoa3.png">Escolher</button>
+                </div>
+                <div class="skin-block">
+                    <h3>Mario</h3>
+                    <img src="imagens/pessoas/pessoa4.png" alt="Skin 4" class="skin-image">
+                    <button class="choose-skin-button" data-skin="imagens/pessoas/pessoa4.png">Escolher</button>
+                </div>
+                <div class="skin-block">
+                    <h3>Naruto</h3>
+                    <img src="imagens/pessoas/pessoa5.png" alt="Skin 5" class="skin-image">
+                    <button class="choose-skin-button" data-skin="imagens/pessoas/pessoa5.png">Escolher</button>
+                </div>
+                <div class="skin-block">
+                    <h3>Homem-Aranha</h3>
+                    <img src="imagens/pessoas/pessoa6.png" alt="Skin 6" class="skin-image">
+                    <button class="choose-skin-button" data-skin="imagens/pessoas/pessoa6.png">Escolher</button>
+                </div>
+                <div class="skin-block">
+                    <h3>Harry Potter</h3>
+                    <img src="imagens/pessoas/pessoa7.png" alt="Skin 7" class="skin-image">
+                    <button class="choose-skin-button" data-skin="imagens/pessoas/pessoa7.png">Escolher</button>
+                </div>
+                <div class="skin-block">
+                    <h3>Pikachu</h3>
+                    <img src="imagens/pessoas/pessoa8.png" alt="Skin 8" class="skin-image">
+                    <button class="choose-skin-button" data-skin="imagens/pessoas/pessoa8.png">Escolher</button>
+                </div>
+                <div class="skin-block">
+                    <h3>Boneco de Neve</h3>
+                    <img src="imagens/pessoas/pessoa9.png" alt="Skin 9" class="skin-image">
+                    <button class="choose-skin-button" data-skin="imagens/pessoas/pessoa9.png">Escolher</button>
+                </div>
+            </div>
+            <button id="back-button-skins" class="back-button">Voltar</button>
+        </div> 
+
+        <!-- tela de dificuldade -->
+        <div id="difficulty-screen" class="screen" style="display: none;">
+            <img id="dific-title" src="imagens/titles/dific-title.png">
+            <div class="difficulty-options">
+                <button id="easy-button" class="dific-button">Fácil</button>
+                <button id="normal-button" class="dific-button">Normal</button>
+                <button id="hard-button" class="dific-button">Difícil</button>
+            </div>
+            <button id="back-button-dific" class="back-button">Voltar</button>
+        </div>
+
+        <!-- tela de créditos -->
+        <div id="creditos-screen" class="screen">
+            <img id="credit-title" src="imagens/titles/credit-title.png">
+            <div id="lista-creditos">
+                <p>Desenvolvido por:</p>
+                <button class="credit-button" id="rafaela-button"><span class="material-symbols-outlined">keyboard_arrow_down</span></button><strong>Rafaela Perottoni Rossato: </strong>Gerente de projeto<br>
+                <div class="credit-information hidden" id="rafaela">
+                    <div class="foto-container">
+                        <img class="foto" src="imagens/fotos/rafa.jpeg">
+                    </div>
+                    <div id="divisao">
+                        <p>Estudante do curso técnico em Informática integrado ao Ensino Médio no Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul - Campus Farroupilha.</p>
+                        <img id="logoCampus" src="imagens/logoCampus.png">
+                    </div>
+                </div>
+            
+                <button class="credit-button" id="naiara-button"><span class="material-symbols-outlined">keyboard_arrow_down</span></button><strong>Naiara Fardo Riboldi: </strong>Designer de Arte<br>
+                <div class="credit-information hidden" id="naiara">
+                    <div class="foto-container">
+                        <img class="foto" src="imagens/fotos/nai.jpeg">
+                    </div>
+                    <div id="divisao">
+                        <p>Estudante do curso técnico em Informática integrado ao Ensino Médio no Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul - Campus Farroupilha.</p>
+                        <img id="logoCampus" src="imagens/logoCampus.png">
+                    </div>
+                </div>
+            
+                <button class="credit-button" id="suelen-button"><span class="material-symbols-outlined">keyboard_arrow_down</span></button><strong>Suélen Carneiro Feijó: </strong>Desenvolvedor<br>
+                <div class="credit-information hidden" id="suelen">
+                    <div class="foto-container">
+                        <img class="foto" src="imagens/fotos/susu.jpeg">
+                    </div>
+                    <div id="divisao">
+                        <p>Estudante do curso técnico em Informática integrado ao Ensino Médio no Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul - Campus Farroupilha.</p>
+                        <img id="logoCampus" src="imagens/logoCampus.png">
+                    </div>
+                </div>
+            
+                <button class="credit-button" id="mariana-button"><span class="material-symbols-outlined">keyboard_arrow_down</span></button><strong>Mariana Carbonari de Pizzol: </strong>Designer de Som
+                <div class="credit-information hidden" id="mariana">
+                    <div class="foto-container">
+                        <img class="foto" src="imagens/fotos/mari.jpeg">
+                    </div>
+                    <div id="divisao">
+                        <p>Estudante do curso técnico em Informática integrado ao Ensino Médio no Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul - Campus Farroupilha.</p>
+                        <img id="logoCampus" src="imagens/logoCampus.png">
+                    </div>
+                </div>
+            </div>            
+            
+            <button id="back-button-credit" class="back-button">Voltar</button>
+        </div>
+
+        <!-- tela de volume -->
+        <div id="volume-screen" class="screen" style="display: none;">
+            <img id="volume-title" src="imagens/titles/volume-title.png">
+            <div class="volume-options">
+                <div class="linha">
+                    <button id="toggle-sound-effects" class="volume-button">Efeitos Sonoros: On</button>
+                    <button id="toggle-music" class="volume-button">Música: On</button>
+                </div>
+                <div class="linha">
+                    <button id="aumentar-volume" class="volume-button">Aumentar Volume</button>
+                    <button id="diminuir-volume"class="volume-button">Diminuir Volume</button>
+                </div>
+            </div>
+            <button id="back-button-volume" class="back-button">Voltar</button>
+        </div>
+    </div>
+<script src="Main.js"></script>
+</body>
+</html>
